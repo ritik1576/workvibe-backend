@@ -1,14 +1,11 @@
 import express from 'express';
 
 const app = express();
-
+app.use(express.json())
+app.use(express.urlencoded({ extended: true }))
 // Middleware
-app.use(express.json());
-app.use(express.urlencoded({ extended: true }));
-
-// Health check
-app.get('/health', (_req, res) => {
-  res.status(200).json({ success: true, data: { status: 'ok' } });
-});
+app.get('/', (req, res) => {
+  res.status(200).json({ success: true, message: 'Server is running' })
+})
 
 export default app;
