@@ -1,4 +1,5 @@
 import app from "./app.js";
-app.listen(3000, () => {
-  console.log('server is connected')
+import { PORT } from "./config/env.js";
+app.listen(PORT, () => {
+  console.log(`server is connected on port ${PORT}`)
 })
