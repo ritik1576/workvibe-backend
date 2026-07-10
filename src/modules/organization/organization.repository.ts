@@ -1,3 +1,5 @@
+import prisma from "../../lib/prisma.js";
+
 export const organizationRepository = {
     async findByContactEmail(email: string) {
         const organization = await prisma.organization.findUnique({
@@ -9,7 +11,7 @@ export const organizationRepository = {
         return organization
     },
 
-    async create(data) {
+    async create(data: any) {
 
         return prisma.organization.create({
             data
