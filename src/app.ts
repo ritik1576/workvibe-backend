@@ -1,5 +1,6 @@
 import express from 'express';
 import organizationRouter from "./modules/organization/organization.route.js";
+import { errorMiddleware } from './common/middleware/error.middleware.js';
 
 const app = express();
 app.use(express.json())
@@ -17,5 +18,6 @@ app.use((req, res, next) => {
   next();
 });
 app.use('/api/organizations', organizationRouter)
+app.use(errorMiddleware)
 
 export default app;
