@@ -17,5 +17,12 @@ export const organizationRepository = {
             data
         })
 
+    },
+    async findById(id: string) {
+        return prisma.organization.findUnique({
+            where: {
+                id
+            }
+        })
     }
 };
