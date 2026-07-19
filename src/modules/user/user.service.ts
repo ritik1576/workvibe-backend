@@ -19,6 +19,19 @@ export const userService = {
         const user = await userRepository.create({ ...rest, passwordHash: hashedPassword })
         return user
 
+    },
+
+    async login(email: string, password: string) {
+        const user = await userRepository.findByEmail(email)
+        if (!user) {
+            throw new AppError(401, "User not found")
+        }
+        const isPasswordValid = await bcrypt.compare(password, user.passwordHash)
+        if (!isPasswordValid) {
+            throw new AppError(401, "Invalid email or password")
+        }
+        const { passwordHash, ...rest } = user
+        return rest
     }
 
 
